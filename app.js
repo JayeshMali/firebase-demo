@@ -1,6 +1,7 @@
 (function(){
   app = angular.module('firebaseApp',[]);
   app.controller('MyCtrl',function($scope){
+    $scope.token = "test token";
     if ('serviceWorker' in navigator) {
       navigator.serviceWorker.register('firebase-messaging-sw.js').then(function(reg) {
         var config = {
@@ -26,6 +27,8 @@
              // print the token on the HTML page
              // TokenElem.innerHTML = "token is : " + token;
              console.log("Token is "+token);
+             $scope.token = token;
+             $scope.$applyAsync();
            })
            .catch(function (err) {
            // ErrElem.innerHTML = ErrElem.innerHTML + "; " + err
